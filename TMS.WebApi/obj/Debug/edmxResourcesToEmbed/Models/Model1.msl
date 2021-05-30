@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravelManagementSystemModelStoreContainer" CdmEntityContainer="TravelManagementSystemEntities">
+    <EntitySetMapping Name="EmployeeMasters">
+      <EntityTypeMapping TypeName="TravelManagementSystemModel.EmployeeMaster">
+        <MappingFragment StoreEntitySet="EmployeeMaster">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFirstName" ColumnName="EmployeeFirstName" />
+          <ScalarProperty Name="EmployeeLastName" ColumnName="EmployeeLastName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="ReimbursementAccountNo" ColumnName="ReimbursementAccountNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseAccepteds">
+      <EntityTypeMapping TypeName="TravelManagementSystemModel.ExpenseAccepted">
+        <MappingFragment StoreEntitySet="ExpenseAccepted">
+          <ScalarProperty Name="ExpenseReportId" ColumnName="ExpenseReportId" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseDetails">
+      <EntityTypeMapping TypeName="TravelManagementSystemModel.ExpenseDetail">
+        <MappingFragment StoreEntitySet="ExpenseDetails">
+          <ScalarProperty Name="ExpenseReportId" ColumnName="ExpenseReportId" />
+          <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+          <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+          <ScalarProperty Name="AmountSpent" ColumnName="AmountSpent" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="MRNumber" ColumnName="MRNumber" />
+          <ScalarProperty Name="ReimbursementAccountNo" ColumnName="ReimbursementAccountNo" />
+          <ScalarProperty Name="ExpenseStatus" ColumnName="ExpenseStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseRejecteds">
+      <EntityTypeMapping TypeName="TravelManagementSystemModel.ExpenseRejected">
+        <MappingFragment StoreEntitySet="ExpenseRejected">
+          <ScalarProperty Name="ExpenseReportId" ColumnName="ExpenseReportId" />
+          <ScalarProperty Name="ReasonForRejection" ColumnName="ReasonForRejection" />
+          <ScalarProperty Name="RejectionDate" ColumnName="RejectionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TravelDetails">
+      <EntityTypeMapping TypeName="TravelManagementSystemModel.TravelDetail">
+        <MappingFragment StoreEntitySet="TravelDetails">
+          <ScalarProperty Name="MRNumber" ColumnName="MRNumber" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Applydate" ColumnName="Applydate" />
+          <ScalarProperty Name="ReasonForTravel" ColumnName="ReasonForTravel" />
+          <ScalarProperty Name="TravelDate" ColumnName="TravelDate" />
+          <ScalarProperty Name="TravelMode" ColumnName="TravelMode" />
+          <ScalarProperty Name="FromCity" ColumnName="FromCity" />
+          <ScalarProperty Name="ToCity" ColumnName="ToCity" />
+          <ScalarProperty Name="TravelDuration" ColumnName="TravelDuration" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

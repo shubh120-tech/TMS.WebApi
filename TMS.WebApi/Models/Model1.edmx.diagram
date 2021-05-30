@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="205a42c6e25d4ebdb979667b8b3e8c8d" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelManagementSystemModel.EmployeeMaster" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelManagementSystemModel.ExpenseAccepted" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelManagementSystemModel.ExpenseDetail" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelManagementSystemModel.ExpenseRejected" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelManagementSystemModel.TravelDetail" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="TravelManagementSystemModel.FK__TravelDet__Emplo__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelManagementSystemModel.FK__ExpenseAc__Expen__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelManagementSystemModel.FK__ExpenseDe__MRNum__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelManagementSystemModel.FK__ExpenseRe__Expen__1CF15040" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

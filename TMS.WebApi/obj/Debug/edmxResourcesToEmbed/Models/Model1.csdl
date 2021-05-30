@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EmployeeMaster">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReimbursementAccountNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TravelDetails" Relationship="Self.FK__TravelDet__Emplo__1367E606" FromRole="EmployeeMaster" ToRole="TravelDetails" />
+  </EntityType>
+  <EntityType Name="ExpenseAccepted">
+    <Key>
+      <PropertyRef Name="ExpenseReportId" />
+    </Key>
+    <Property Name="ExpenseReportId" Type="Int32" Nullable="false" />
+    <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ExpenseDetail" Relationship="Self.FK__ExpenseAc__Expen__1A14E395" FromRole="ExpenseAccepted" ToRole="ExpenseDetails" />
+  </EntityType>
+  <EntityType Name="ExpenseDetail">
+    <Key>
+      <PropertyRef Name="ExpenseReportId" />
+    </Key>
+    <Property Name="ExpenseReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExpenseType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AmountSpent" Type="Int32" Nullable="false" />
+    <Property Name="PaymentType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MRNumber" Type="Int32" Nullable="false" />
+    <Property Name="ReimbursementAccountNo" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ExpenseAccepted" Relationship="Self.FK__ExpenseAc__Expen__1A14E395" FromRole="ExpenseDetails" ToRole="ExpenseAccepted" />
+    <NavigationProperty Name="TravelDetail" Relationship="Self.FK__ExpenseDe__MRNum__173876EA" FromRole="ExpenseDetails" ToRole="TravelDetails" />
+    <NavigationProperty Name="ExpenseRejected" Relationship="Self.FK__ExpenseRe__Expen__1CF15040" FromRole="ExpenseDetails" ToRole="ExpenseRejected" />
+  </EntityType>
+  <EntityType Name="ExpenseRejected">
+    <Key>
+      <PropertyRef Name="ExpenseReportId" />
+    </Key>
+    <Property Name="ExpenseReportId" Type="Int32" Nullable="false" />
+    <Property Name="ReasonForRejection" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RejectionDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ExpenseDetail" Relationship="Self.FK__ExpenseRe__Expen__1CF15040" FromRole="ExpenseRejected" ToRole="ExpenseDetails" />
+  </EntityType>
+  <EntityType Name="TravelDetail">
+    <Key>
+      <PropertyRef Name="MRNumber" />
+    </Key>
+    <Property Name="MRNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="Applydate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReasonForTravel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TravelDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TravelMode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FromCity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ToCity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TravelDuration" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="Self.FK__TravelDet__Emplo__1367E606" FromRole="TravelDetails" ToRole="EmployeeMaster" />
+    <NavigationProperty Name="ExpenseDetails" Relationship="Self.FK__ExpenseDe__MRNum__173876EA" FromRole="TravelDetails" ToRole="ExpenseDetails" />
+  </EntityType>
+  <Association Name="FK__TravelDet__Emplo__1367E606">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="1" />
+    <End Role="TravelDetails" Type="Self.TravelDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="TravelDetails">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExpenseAc__Expen__1A14E395">
+    <End Role="ExpenseDetails" Type="Self.ExpenseDetail" Multiplicity="1" />
+    <End Role="ExpenseAccepted" Type="Self.ExpenseAccepted" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseDetails">
+        <PropertyRef Name="ExpenseReportId" />
+      </Principal>
+      <Dependent Role="ExpenseAccepted">
+        <PropertyRef Name="ExpenseReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExpenseDe__MRNum__173876EA">
+    <End Role="TravelDetails" Type="Self.TravelDetail" Multiplicity="1" />
+    <End Role="ExpenseDetails" Type="Self.ExpenseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TravelDetails">
+        <PropertyRef Name="MRNumber" />
+      </Principal>
+      <Dependent Role="ExpenseDetails">
+        <PropertyRef Name="MRNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExpenseRe__Expen__1CF15040">
+    <End Role="ExpenseDetails" Type="Self.ExpenseDetail" Multiplicity="1" />
+    <End Role="ExpenseRejected" Type="Self.ExpenseRejected" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseDetails">
+        <PropertyRef Name="ExpenseReportId" />
+      </Principal>
+      <Dependent Role="ExpenseRejected">
+        <PropertyRef Name="ExpenseReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeeMasters" EntityType="Self.EmployeeMaster" />
+    <EntitySet Name="ExpenseAccepteds" EntityType="Self.ExpenseAccepted" />
+    <EntitySet Name="ExpenseDetails" EntityType="Self.ExpenseDetail" />
+    <EntitySet Name="ExpenseRejecteds" EntityType="Self.ExpenseRejected" />
+    <EntitySet Name="TravelDetails" EntityType="Self.TravelDetail" />
+    <AssociationSet Name="FK__TravelDet__Emplo__1367E606" Association="Self.FK__TravelDet__Emplo__1367E606">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="TravelDetails" EntitySet="TravelDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExpenseAc__Expen__1A14E395" Association="Self.FK__ExpenseAc__Expen__1A14E395">
+      <End Role="ExpenseDetails" EntitySet="ExpenseDetails" />
+      <End Role="ExpenseAccepted" EntitySet="ExpenseAccepteds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExpenseDe__MRNum__173876EA" Association="Self.FK__ExpenseDe__MRNum__173876EA">
+      <End Role="TravelDetails" EntitySet="TravelDetails" />
+      <End Role="ExpenseDetails" EntitySet="ExpenseDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExpenseRe__Expen__1CF15040" Association="Self.FK__ExpenseRe__Expen__1CF15040">
+      <End Role="ExpenseDetails" EntitySet="ExpenseDetails" />
+      <End Role="ExpenseRejected" EntitySet="ExpenseRejecteds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
